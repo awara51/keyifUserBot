@@ -21,7 +21,7 @@ async def yardim_mesaji(client, message):
 
     mesaj = f"""Merhaba, [{message.from_user.first_name}](tg://user?id={message.from_user.id})!\n
 Ben @keyiflerolsun tarafından, @KekikAkademi'de yaratıldım.\n
-Kaynak kodlarım [Burada](https://github.com/KekikAkademi/kekikUserbot)
+Kaynak kodlarım [Burada](https://github.com/keyiflerolsun/keyifUserBot)
 Kullanabileceğim komutlar ise eklentilerimde gizli..\n\n"""
 
     mesaj += """__Eklentilerimi görebilmek için__ `.eklentilist` __komutunu kullanabilirsin..__
