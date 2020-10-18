@@ -48,7 +48,14 @@ async def nobetci(client, message):
 
     try:
         for eczane in nobetci_eczane(il, ilce, "json_veri"):
-            mesaj += f"**\n\t⚕ {eczane['eczane_adi']}**\n📍 __{eczane['eczane_adresi']}__\n\t☎️ `{eczane['eczane_telefonu']}`\n\n"
+            mesaj += f"**\n\t⚕ {eczane['ad']}**"
+            mesaj += f"\n📍"
+            if eczane['mahalle']:
+                mesaj += f"`{eczane['mahalle']}`\n"
+            mesaj += f"__{eczane['adres']}__"
+            if eczane['tarif']:
+                mesaj += f"\n**({eczane['tarif']})**"
+            mesaj += f"\n\t☎️ `{eczane['telefon']}`\n\n"
 
         await ilk_mesaj.edit(mesaj)
     except IndexError:

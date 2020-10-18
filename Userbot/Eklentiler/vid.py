@@ -46,15 +46,19 @@ async def vid(client, message):
     girilen_yazi        = message.text
     cevaplanan_mesaj    = message.reply_to_message
 
-    if not cevaplanan_mesaj and len(message.command) == 1:
-        await ilk_mesaj.edit("Arama yapabilmek için `Youtube Linki` girmelisiniz, veya @vid __mesajı yanıtlamalısınız..__")
-        return
+    try:
+        if (not cevaplanan_mesaj) and (len(message.command) == 1):
+            await ilk_mesaj.edit("Arama yapabilmek için `Youtube Linki` girmelisiniz, veya @vid __mesajı yanıtlamalısınız..__")
+            return
 
-    if not cevaplanan_mesaj:
-        verilen_link = link_ayikla(girilen_yazi)[0]
-    elif cevaplanan_mesaj.text:
-            verilen_link = link_ayikla(cevaplanan_mesaj.text)[0]
-    else:
+        if not cevaplanan_mesaj:
+            verilen_link = link_ayikla(girilen_yazi)[0]
+        elif cevaplanan_mesaj.text:
+            try:
+                verilen_link = link_ayikla(cevaplanan_mesaj.text)[0]
+            except TypeError:
+                verilen_link = link_ayikla(girilen_yazi)[0]
+    except TypeError:
         await ilk_mesaj.edit('__jajajajaj güldük..__')
         return
 
