@@ -63,7 +63,7 @@ async def vid(client, message):
         return
 
     simdiki_zaman = time.time()
-    if (len(message.command) > 0) and (message.command[1] == 'mp3'):
+    if (len(message.command) > 1) and (message.command[1] == 'mp3'):
         yt_baslik, yt_resim, inen_veri, ilk_mesaj = await ytdl_indirici(ilk_mesaj, verilen_link, parametre='mp3')
         indirdim_kanka = await client.send_audio(
             chat_id             = message.chat.id,
