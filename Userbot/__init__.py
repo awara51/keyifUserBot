@@ -25,6 +25,10 @@ if sys.version_info[0] < 3 or sys.version_info[1] < 6:
               Birden fazla özellik buna bağlıdır. Bot kapatılıyor.""")
     quit(1)
 
+if not os.path.exists('ayar.env'):
+    hata("\n\tLütfen ayar.env dosyanızı oluşturun..\n")
+    quit(1)
+
 load_dotenv("ayar.env")
 
 # Yapılandırmanın önceden kullanılan değişkeni kullanarak düzenlenip düzenlenmediğini kontrol edin.
@@ -32,7 +36,7 @@ load_dotenv("ayar.env")
 AYAR_KONTROL = os.environ.get("___________LUTFEN_______BU_____SATIRI_____SILIN__________", None)
 
 if AYAR_KONTROL:
-    hata("\n\tLütfen ilk hashtag'de belirtilen satırı ayar.env dosyasından kaldırın\n")
+    hata("\n\tLütfen ayar.env dosyanızı düzenlediğinize emin olun /veya\n\tilk hashtag'de belirtilen satırı kaldırın..\n")
     quit(1)
 
 API_ID          = os.environ.get("API_ID", None)
@@ -42,6 +46,10 @@ SESSION_ADI     = os.environ.get("SESSION_ADI", "kekikUserbot")
 INDIRME_ALANI   = os.environ.get("INDIRME_ALANI", "downloads/")
 if not os.path.isdir(INDIRME_ALANI): os.makedirs(INDIRME_ALANI)
 
+if STRING_SESSION.startswith('-') or len(STRING_SESSION) < 351:
+    hata("\n\tMuhtemelen String Session Hatalı..!\n")
+    quit(1)
+
 try:
     kekikUserbot        = Client(
         STRING_SESSION,
@@ -50,7 +58,7 @@ try:
         plugins         = dict(root="Userbot/Eklentiler")
     )
 except ValueError:
-    hata("\n\tLütfen ayar.env dosyanızı oluşturun..\n")
+    hata("\n\tLütfen ayar.env dosyanızı DÜZGÜNCE! oluşturun..\n")
     quit(1)
 
 DESTEK_KOMUT = {}
